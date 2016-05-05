@@ -1,0 +1,14 @@
+@import './styles/Reset';
+@import './styles/Variables';
+@import './styles/Fonts';
+
+#app * {
+    box-sizing:border-box;
+}
+
+
+body {
+    background: rgb(0, 192, 240);
+    font-family: Helvetica, Arial, sans-serif;
+    color: white;
+}
