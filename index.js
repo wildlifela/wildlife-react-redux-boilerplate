@@ -16,7 +16,7 @@ let server = http.listen( env.PORT, () => {
     let h = server.address().address;
     let p = server.address().port;
 
-    console.info('Hyundai Admin - listening at http://%s:%s', h, p );
+    console.info('App - listening at http://%s:%s', h, p );
 });
 
 
