@@ -9,16 +9,18 @@ let devEntry = () => {
     return entry;
 };
 
-
-
 module.exports = {
-    devtool: 'source-map',
+    devtool: 'eval-cheap-module-source-map',
     debug: true,
     entry: devEntry(),
     output: shared.output,
     externals: shared.external,
     module: {
-        loaders: shared.loaders
+        postLoaders: shared.postLoaders,
+        loaders: [
+            ...shared.loaders,
+            { test: /\.scss$/, loader: 'style-loader!css-loader!postcss-loader!sass-loader'}
+        ]
     },
     postcss: shared.postCSS,
     plugins: [
@@ -30,6 +32,4 @@ module.exports = {
     watch: true,
     node: shared.node
 };
-
-
 

@@ -20,7 +20,7 @@ module.exports = app => {
 
     app.set('appDir', appDir);
     app.set('views', appDir + '/server/view');
-    app.set('view engine', 'jade');
+    app.set('view engine', 'pug');
 
     app.use(logger('dev', {skip: (req, res) => { return res.statusCode < 399; }}));
     app.use(bodyParser.json({limit: '10mb'}));

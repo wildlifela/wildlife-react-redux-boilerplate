@@ -1,5 +1,6 @@
 'use strict';
-
+let dotenv = require('dotenv');
+dotenv.load();
 let express = require('express');
 let env = require('./server/config/env');
 let http = require('http');

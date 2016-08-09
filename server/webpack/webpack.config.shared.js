@@ -4,19 +4,16 @@ let path = require('path');
 let autoprefixer = require('autoprefixer');
 let precss = require('precss');
 
+
 let cwd = process.cwd();
 
 const vendors =  [
     'babel-polyfill',
     'classnames',
-    'moment',
     'react',
-    'react-addons-update',
     'react-dom',
-    'react-pure-render',
     'react-redux',
     'react-router',
-    'react-static-container',
     'react-tap-event-plugin',
     'redux',
     'redux-thunk',
@@ -32,34 +29,10 @@ const CONFIG = {
         }
     ],
     loaders: [
-
         {
-            test: /isotope\-|fizzy\-ui\-utils/,
-            loader: 'imports?define=>false&this=>window'
-        },
-        {
-            test: /unipointer/,
-            loader: 'imports?define=>false&this=>window'
-        },
-        {
-            test: /\.js$|\.jsx$/i,
-            //exclude: /node_modules/,
-            loader: 'babel',
-            include: [
-                path.normalize(`${cwd}/src/js/`),
-                path.normalize(`${cwd}/node_modules/joi/`),
-                path.normalize(`${cwd}/node_modules/isemail/`),
-                path.normalize(`${cwd}/node_modules/topo/`),
-
-            ]
-        },
-        {
-            test: /\.scss$/,
-            loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader'
-        },
-        {
-            test: /\.css$/,
-            loader: 'style-loader!css-loader!postcss-loader'
+            test: /\.jsx?$/i,
+            exclude: /node_modules/,
+            loaders: ['babel'],
         },
         {
             test: /\.(woff|ttf|eot|svg|png)(\?.*)?/,
@@ -78,9 +51,9 @@ const CONFIG = {
         chunkFilename: '[name].[id].js'
     },
     external: {
-        TweenLite : 'TweenLite'
+        TweenLite: 'TweenLite'
     },
-    postCSS: function () {
+    postCSS: function() {
         return [autoprefixer, precss];
     },
     node: {

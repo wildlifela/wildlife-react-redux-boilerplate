@@ -1,7 +1,12 @@
 extends _layout
 
+
+
 block append meta
 
+block append css
+    if(process.env.NODE_ENV === 'production')
+        link(rel='stylesheet' href='/css/app.css')
 
 block append content
     #app
