@@ -3,7 +3,7 @@
 
 
 #### Description
-Fairly straighforward react/redux SPA Build that is pre configured for static deployment on S3. 
+Fairly straighforward react/redux SPA Build.
 
 #### Requirements 
 * Node >= 6  
