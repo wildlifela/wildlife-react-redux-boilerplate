@@ -5,7 +5,7 @@ let shared = require('./webpack.config.shared');
 
 let devEntry = () => {
     let entry = Object.assign({},shared.entry);
-    entry.app.unshift('webpack-hot-middleware/client');
+    entry.app.unshift(`webpack-dev-server/client?http://localhost:${shared.devPort}`, 'webpack/hot/only-dev-server');
     return entry;
 };
 

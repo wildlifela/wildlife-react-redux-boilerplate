@@ -19,9 +19,10 @@ class Main extends React.Component {
             </div>
         );
     }
-
-
 }
+
+
 
 const mapStateToProps = state => ({});
 export default connect(mapStateToProps, {})(Main);
+

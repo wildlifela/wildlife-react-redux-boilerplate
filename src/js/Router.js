@@ -23,6 +23,7 @@ const ROUTER = (
         <Route path="/" component={Main} >
             <IndexRoute component={Index} />
         </Route>
+
     </Router>
 );
 

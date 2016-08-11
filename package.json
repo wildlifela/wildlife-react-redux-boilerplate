@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf public/css/* public/js/* public/*.html",
-    "dev": "npm run clean && NODE_ENV=development node index.js",
-    "windev": "set NODE_ENV=development && node ./index.js",
-    "build:template": "NODE_ENV=production pug server/view/index.pug --out public/",
-    "build": "npm run build:template && NODE_ENV=production webpack --config ./server/webpack/webpack.config.prod.js"
+    "dev": "npm run clean && npm run template && NODE_ENV=development node ./config/webpack.dev.server",
+    "template": "pug src/pug/index.pug --out public/",
+    "build:template": "NODE_ENV=production npm run template",
+    "build": "npm run clean && npm run build:template && NODE_ENV=production webpack --config ./config/webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -57,23 +57,15 @@
     "transform-loader": "^0.2.3",
     "webpack": "^1.12.6",
     "webpack-dev-middleware": "^1.4.0",
-    "webpack-dev-server": "^1.14.0",
+    "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.6.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.5.0",
-    "body-parser": "^1.14.2",
     "classnames": "^2.2.3",
-    "cookie-parser": "^1.4.1",
     "dotenv": "^2.0.0",
-    "express": "^4.14.0",
-    "express-session": "^1.13.0",
-    "helmet": "^1.3.0",
     "history": "^3.0.0",
-    "jade": "^1.11.0",
     "lodash": "^4.11.2",
-    "mobile-detect": "^1.3.1",
-    "morgan": "^1.6.1",
     "promise-polyfill": "^5.0.0",
     "pug": "^2.0.0-beta4",
     "react": "^15.3.0",
@@ -87,7 +79,7 @@
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.1",
-    "serve-favicon": "^2.3.0",
+    "webpack": "^1.13.1",
     "whatwg-fetch": "^0.11.0"
   },
   "peerDependencies": {

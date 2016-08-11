@@ -1,11 +1,13 @@
 'use strict';
-
+const dotenv = require('dotenv');
+dotenv.load();
 let path = require('path');
 let autoprefixer = require('autoprefixer');
 let precss = require('precss');
 
 
 let cwd = process.cwd();
+console.log(__dirname);
 
 const vendors =  [
     'babel-polyfill',
@@ -22,6 +24,7 @@ const vendors =  [
 ];
 
 const CONFIG = {
+    devPort: process.env.PORT || 3000,
     vendors: vendors,
     postLoaders: [
         {

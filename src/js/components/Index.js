@@ -10,7 +10,7 @@ class Index extends Component {
         return (
             <div>
                 <img src="/assets/wl-home_logo-wildlife.png" />
-                <h1>welcome to react/redux boilerplate</h1>
+                <h1>welcome to react/redux webpack and jeez</h1>
             </div>
         );
     }
