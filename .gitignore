@@ -34,9 +34,6 @@ bower_components
 # Ignore .DS_Store files on OS X
 .DS_Store
 
-
-
-
 .idea/
 docs/
 psd/
@@ -44,14 +41,9 @@ psd/
 log/
 data/*.sqlite
 
-public/js/*.js
-public/js/*.json
-public/js/*.map
-public/css/*.css
-public/css/*.map
-public/images
+public/assets/*
 public/*.html
-
+config/generated/*.*
 *.orig
 
 

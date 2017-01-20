@@ -10,7 +10,7 @@ let devEntry = () => {
 };
 
 module.exports = {
-    devtool: 'eval-cheap-module-source-map',
+    devtool: 'source-map',
     debug: true,
     entry: devEntry(),
     output: shared.output,

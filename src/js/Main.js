@@ -1,15 +1,11 @@
-import React, {PropTypes} from 'react';
-import { connect } from 'react-redux';
-require('./Main.scss');
-
-
+import React, {PropTypes} from 'react'
+import { connect } from 'react-redux'
+import './Main.scss'
 
 class Main extends React.Component {
 
-    constructor(props, context) {
-        super(props, context);
-
-
+    static propTypes = {
+        children: PropTypes.node
     }
 
     render() {
@@ -17,12 +13,12 @@ class Main extends React.Component {
             <div>
                 {this.props.children}
             </div>
-        );
+        )
     }
 }
 
 
 
-const mapStateToProps = state => ({});
-export default connect(mapStateToProps, {})(Main);
+const mapStateToProps = state => ({})
+export default connect(mapStateToProps, {})(Main)
 

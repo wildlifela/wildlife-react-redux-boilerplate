@@ -6,12 +6,12 @@ block append meta
 
 block append css
     if(process.env.NODE_ENV === 'production')
-        link(rel='stylesheet' href='/css/app.css')
+        link(rel='stylesheet' href='/assets/app.css')
 
 block append content
     #app
 
 
 block append scripts
-    script(src='/js/app.vendor.js' type='text/javascript')
-    script(src='/js/app.js' type='text/javascript')
+    script(src='/assets/app.vendor.js' type='text/javascript')
+    script(src='/assets/app.js' type='text/javascript')

@@ -1,9 +1,9 @@
 
-const shared = require('./webpack.config.shared.js');
-const config = require('./webpack.config.dev.js');
-const webpack = require('webpack');
-const webpackDevServer = require('webpack-dev-server');
-const compiler = webpack(config);
+const shared = require('./webpack.config.shared.js')
+const config = require('./webpack.config.dev.js')
+const webpack = require('webpack')
+const webpackDevServer = require('webpack-dev-server')
+const compiler = webpack(config)
 
 const server = new webpackDevServer(compiler, {
     publicPath: shared.output.publicPath,
@@ -11,13 +11,13 @@ const server = new webpackDevServer(compiler, {
     inline: true,
     contentBase: 'public/',
     historyApiFallback: true
-});
+})
 
 
-server.listen(shared.devPort, 'localhost', (err) => {
+server.listen(shared.devPort, '0.0.0.0', (err) => {
     if(err) {
-        throw new Error(err);
+        throw new Error(err)
     }
 
-    console.info(`WILDLIFE dev server running on http://localhost:${shared.devPort}`);
-});
+    console.info(`WILDLIFE dev server running on http://localhost:${shared.devPort}`)
+})

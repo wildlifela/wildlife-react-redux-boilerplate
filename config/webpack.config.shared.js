@@ -1,31 +1,17 @@
-'use strict';
-const dotenv = require('dotenv');
-dotenv.load();
-let path = require('path');
-let autoprefixer = require('autoprefixer');
-let precss = require('precss');
+'use strict'
+const dotenv = require('dotenv')
+dotenv.load()
+const path = require('path')
+const autoprefixer = require('autoprefixer')
+const precss = require('precss')
+const webpack = require('webpack')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
-
-let cwd = process.cwd();
-console.log(__dirname);
-
-const vendors =  [
-    'babel-polyfill',
-    'classnames',
-    'react',
-    'react-dom',
-    'react-redux',
-    'react-router',
-    'react-tap-event-plugin',
-    'redux',
-    'redux-thunk',
-    'whatwg-fetch',
-    'promise-polyfill'
-];
+const ENVIRONMENT = require('./webpack.config.env.js')
+const cwd = process.cwd()
 
 const CONFIG = {
     devPort: process.env.PORT || 3000,
-    vendors: vendors,
     postLoaders: [
         {
             loader: 'transform?envify'
@@ -38,26 +24,50 @@ const CONFIG = {
             loaders: ['babel'],
         },
         {
-            test: /\.(woff|ttf|eot|svg|png)(\?.*)?/,
-            loader: 'url-loader'
+            test: /\.(woff|ttf|eot|png|jpg|svg)(\?.*)?/,
+            loader: 'file-loader',
+            exclude: /\/svg/
+        },
+        {
+            test: /\.svg$/,
+            loader: 'babel!react-svg?' + JSON.stringify({
+                svgo: {
+                    plugins: [
+                        {removeTitle: true},
+                        {removeMetadata: true},
+                        {removeDesc: true},
+                        {cleanupAttrs: true},
+                        {cleanupIDs: false},
+                    ]
+                }
+            }),
+            exclude: /\/fonts/
+
         }
     ],
     entry: {
         app: [path.normalize(`${cwd}/src/js/app.js`)],
-        vendor: vendors
 
     },
     output: {
-        path: path.normalize(`${cwd}/public/js`),
-        publicPath: '/js/',
+        path: path.normalize(`${cwd}/public/assets`),
+        publicPath: '/assets/',
         filename: '[name].js',
         chunkFilename: '[name].[id].js'
     },
-    external: {
-        TweenLite: 'TweenLite'
-    },
+    plugins: [
+        new webpack.DefinePlugin(ENVIRONMENT),
+        new webpack.DllReferencePlugin({
+            context: path.normalize(`${cwd}/src/js/`),
+            manifest: require(`${cwd}/config/generated/vendor-manifest.json`)
+        }),
+        new LodashModuleReplacementPlugin({
+            collections: true,
+            shorthands: true
+        })
+    ],
     postCSS: function() {
-        return [autoprefixer, precss];
+        return [autoprefixer, precss]
     },
     node: {
         net: 'empty',
@@ -65,6 +75,6 @@ const CONFIG = {
         dns: 'empty',
         fs: 'empty'
     }
-};
+}
 
-module.exports = CONFIG;
+module.exports = CONFIG

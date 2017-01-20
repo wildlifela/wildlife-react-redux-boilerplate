@@ -1,21 +1,20 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 
 
 class Index extends Component {
     constructor() {
-        super(...arguments);
+        super(...arguments)
     }
 
     render() {
         return (
             <div>
-                <img src="/assets/wl-home_logo-wildlife.png" />
-                <h1>welcome to react/redux webpack and jeez</h1>
+                <img src="/images/wl-home_logo-wildlife.png" />
             </div>
-        );
+        )
     }
 
 }
 
-export default Index;
+export default Index
 

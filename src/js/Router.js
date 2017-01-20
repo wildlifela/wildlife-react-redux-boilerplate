@@ -1,22 +1,22 @@
-import React, {Component} from 'react';
-import { render } from 'react-dom';
-import { Router, Route, IndexRoute/*, Redirect*/ } from 'react-router';
-import { browserHistory } from 'react-router';
-import { Provider, connect } from 'react-redux';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import configureStore from './store/';
+import React, {Component} from 'react'
+import { render } from 'react-dom'
+import { Router, Route, IndexRoute/*, Redirect*/ } from 'react-router'
+import { browserHistory } from 'react-router'
+import { Provider, connect } from 'react-redux'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+import configureStore from './store/'
 
 //Pages
-import Main from './Main.js';
-import Index from './components/Index.js';
+import Main from './Main.js'
+import Index from './components/Index.js'
 
 
-injectTapEventPlugin();
+injectTapEventPlugin()
 
 
 //Needed to make calls to the web services
 
-const store = configureStore();
+const store = configureStore()
 
 const ROUTER = (
     <Router history={browserHistory}>
@@ -25,7 +25,7 @@ const ROUTER = (
         </Route>
 
     </Router>
-);
+)
 
 
 /*
@@ -33,18 +33,18 @@ const ROUTER = (
  * */
 class AppHandler extends Component {
     constructor() {
-        super();
+        super()
     }
 
 
     render() {
         return <Provider store={store}>
             {ROUTER}
-        </Provider>;
+        </Provider>
     }
 }
 
 
 render((
     <AppHandler />
-), document.getElementById('app'));
+), document.getElementById('app'))

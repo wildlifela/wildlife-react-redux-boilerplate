@@ -1,2 +1,2 @@
 //PAGES
-export const APP_NAME = 'APP NAME' /* DEFAULT */;
+export const APP_NAME = 'APP NAME' /* DEFAULT */
