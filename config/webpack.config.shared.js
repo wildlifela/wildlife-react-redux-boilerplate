@@ -2,35 +2,30 @@
 const dotenv = require('dotenv')
 dotenv.load()
 const path = require('path')
-const autoprefixer = require('autoprefixer')
-const precss = require('precss')
 const webpack = require('webpack')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 const ENVIRONMENT = require('./webpack.config.env.js')
 const cwd = process.cwd()
+const autoprefixer = require('autoprefixer')
+
 
 const CONFIG = {
     devPort: process.env.PORT || 3000,
-    postLoaders: [
-        {
-            loader: 'transform?envify'
-        }
-    ],
-    loaders: [
+    rules: [
         {
             test: /\.jsx?$/i,
             exclude: /node_modules/,
-            loaders: ['babel'],
+            use: ['babel-loader'],
         },
         {
             test: /\.(woff|ttf|eot|png|jpg|svg)(\?.*)?/,
-            loader: 'file-loader',
+            use: ['file-loader'],
             exclude: /\/svg/
         },
         {
             test: /\.svg$/,
-            loader: 'babel!react-svg?' + JSON.stringify({
+            use: [ 'babel-loader!react-svg-loader?' + JSON.stringify({
                 svgo: {
                     plugins: [
                         {removeTitle: true},
@@ -40,7 +35,7 @@ const CONFIG = {
                         {cleanupIDs: false},
                     ]
                 }
-            }),
+            })],
             exclude: /\/fonts/
 
         }
@@ -66,9 +61,6 @@ const CONFIG = {
             shorthands: true
         })
     ],
-    postCSS: function() {
-        return [autoprefixer, precss]
-    },
     node: {
         net: 'empty',
         tls: 'empty',

@@ -7,6 +7,9 @@ const ENVIRONMENT = require('./webpack.config.env.js')
 const isDev = process.env.NODE_ENV === 'development'
 
 let plugins = [
+    new webpack.LoaderOptionsPlugin({
+        debug: isDev
+    }),
     new webpack.DefinePlugin(ENVIRONMENT),
     new webpack.DllPlugin({
         // The manifest we will use to reference the libraries
@@ -26,7 +29,6 @@ if(!isDev) plugins.push(new webpack.optimize.UglifyJsPlugin({
 
 module.exports = {
     devtool: isDev ? 'source-map' : false,
-    debug: isDev,
     entry: {
         // The entrypoint is our vendor file
         vendor: [path.normalize(`${cwd}/src/js/vendor.js`)],
@@ -39,7 +41,9 @@ module.exports = {
     },
     plugins,
     resolve: {
-        root: path.normalize(`${cwd}/src/js/`),
-        modulesDirectories: ['node_modules']
+        modules: [
+            path.normalize(`${cwd}/src/js/`),
+            'node_modules'
+        ]
     }
 }

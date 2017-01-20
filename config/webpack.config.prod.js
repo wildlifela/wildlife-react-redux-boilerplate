@@ -13,21 +13,22 @@ module.exports = {
     output: shared.output,
     externals: shared.external,
     module: {
-        postLoaders: shared.postLoaders,
-        loaders: [
-            ...shared.loaders,
-            { test: /\.s?css$/, loader: ExtractTextPlugin.extract('style', 'css-loader!postcss-loader!sass-loader') }
+        rules: [
+            ...shared.rules,
+            { test: /\.s?css$/, loader: ExtractTextPlugin.extract({fallbackLoader: 'style-loader', loader: 'css-loader!postcss-loader!sass-loader' }) }
         ]
     },
-    postcss: shared.postCSS,
     plugins: [
-        new ExtractTextPlugin('[name].css', {allChunks: true}),
-        new webpack.optimize.DedupePlugin(),
+        new webpack.LoaderOptionsPlugin({
+            postcss: shared.postCSS
+        }),
+        new ExtractTextPlugin({filename: '[name].css',disable: false, allChunks: true}),
         new webpack.optimize.UglifyJsPlugin({
             minimize: true,
             sourceMap: true,
             compress: {
-                drop_console: true
+                drop_console: true,
+                warnings: false
             }
         })
     ],
