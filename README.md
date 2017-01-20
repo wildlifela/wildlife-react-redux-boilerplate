@@ -14,7 +14,7 @@ Fairly straighforward react/redux SPA Build.
 
 #### To Develop
 * `npm run dev`  
-* user `.env` file for your environment variables. they are available everywhere.
+* Set environment vars in a `.env` file at the root. You will have to add them into `webpack.config.env.js` if you wan them available to the react application.
     
     
     
@@ -36,6 +36,7 @@ Fairly straighforward react/redux SPA Build.
 * redux-thunk
 * whatwg-fetch
 * promise-polyfill
+* lodash
 
 
 
